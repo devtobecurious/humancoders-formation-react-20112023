@@ -1,11 +1,22 @@
+import { useState } from "react";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 
 export const Header = () => {
+  console.info('Header');
+  //let title = 'React-Bootstrap';
+  const [title, setTitle] = useState('React title');
+
+  const changeTitle = () => {
+    // title = 'Ma bibliothèque SW';
+    setTitle('Ma bibliothèque SW'); // Ca va redemander le rendu du DOM virtuel, puis si différence du DOM réel
+    // Par rendu, j'entends : ré exécution de la fonction de ce composant
+  }
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">{title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -28,6 +39,9 @@ export const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <button onClick={changeTitle}>Change title</button>
     </>
   );
+  
 };

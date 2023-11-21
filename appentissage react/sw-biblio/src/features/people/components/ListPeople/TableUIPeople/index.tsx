@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
-import { RowPerson } from "../RowPerson";
-import { DeleteById } from "../../tools/custom-types";
+import { RowPerson } from "./RowPerson";
+import { DeleteById } from "../../../tools/custom-types";
 
 export type OnePeopleProps = {
     id: number;

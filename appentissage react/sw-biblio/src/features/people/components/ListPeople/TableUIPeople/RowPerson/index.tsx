@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { DeleteById } from "../../tools/custom-types";
+import { DeleteById } from "../../../../tools/custom-types";
 
 export type RowPersonProps = {
     col1: string,

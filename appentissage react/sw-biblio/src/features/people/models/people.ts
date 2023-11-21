@@ -5,3 +5,7 @@ export interface Person {
 }
 
 export type People = Person[];
+
+export const getDefaultPeople = () => {
+    return [{id: 1, prenom: 'Luke'}];
+}
