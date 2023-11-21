@@ -4,14 +4,21 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prejohny": "echo 'ah que ...'",
+    "johny": "echo 'optic 2000'",
+    "postjohny": "echo 'oh yeah'",
+    "predev": "tsc",
     "dev": "vite",
+    "prestart": "echo '========= on lance ========='",
     "start": "npm run dev",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap": "^5.3.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
