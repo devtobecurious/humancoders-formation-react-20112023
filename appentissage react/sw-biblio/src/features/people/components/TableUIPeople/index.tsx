@@ -1,5 +1,6 @@
 import { Table } from "react-bootstrap";
 import { RowPerson } from "../RowPerson";
+import { DeleteById } from "../../tools/custom-types";
 
 export type OnePeopleProps = {
     id: number;
@@ -7,11 +8,12 @@ export type OnePeopleProps = {
 }
 
 export type TablePeopleProps = {
-    items: OnePeopleProps[]
+    items: OnePeopleProps[],
+    deleteOnRow: DeleteById
 }
 
 export const TableUIPeople = (props: TablePeopleProps) => {
-    const rows = props.items.map(person => <RowPerson key={person.id} col1={person.id.toString()} col2={person.prenom} ></RowPerson>);
+    const rows = props.items.map(person => <RowPerson key={person.id} clickToDelete={props.deleteOnRow}  col1={person.id.toString()} col2={person.prenom} ></RowPerson>);
     console.info('TableUIPeople');
 
     return (
