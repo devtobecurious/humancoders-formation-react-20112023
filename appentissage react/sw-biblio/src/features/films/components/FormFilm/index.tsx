@@ -1,6 +1,6 @@
-import { Button, Form } from "react-bootstrap";
-import { Episode, Film } from "../../models";
-import { FormEvent, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import { Film } from "../../models";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 export type ClickToSave = (item: Film) => void;
 
@@ -26,25 +26,24 @@ export const FormFilm = (props: FormFilmProps) => {
 
     const clickToSubmit = (event: FormEvent<HTMLFormElement>) => {
         props.clickToSave({
-            episodeId: Number(inputFilm.episode), // Comment passer d'un number à un enum
-            releaseDate: new Date()
+            episodeId: 1, // Number(inputFilm.episode.value) as Episode
+            releaseDate: new Date(),
+            title: inputFilm.episode.value
         });
         event.preventDefault();
     }
 
-    const updateFilmInputs = (e: FormEvent) => { // Le any est banni, alors on met quoi ici ? :)
-        console.info(e.target);
+    const updateFilmInputs = (e: ChangeEvent<HTMLInputElement>) => { // Le any est banni, alors on met quoi ici ? :)
+        console.info(e.target.value);
 
         const newFilm = {
             ...inputFilm,
             episode: {
-                value: e.target,
-                isValid: e.target
-            },
-            form: {
-                isValid: true
+                value: e.target.value,
+                isValid: e.target.value !== ''
             }
         }
+        newFilm.form.isValid = newFilm.episode.isValid;
 
         setInputFilm(newFilm);
     }
@@ -55,8 +54,9 @@ export const FormFilm = (props: FormFilmProps) => {
             <Form.Group className="mb-3" controlId="">
                 <Form.Label>Titre</Form.Label>
                 <Form.Control type="text" placeholder="Titre" onChange={updateFilmInputs} />
+                { !inputFilm.episode.isValid && <Alert variant="danger">Titre requis</Alert> }
             </Form.Group>
-                <Button type="submit">Sauvegarde</Button>
+                <Button type="submit" disabled={! inputFilm.form.isValid}>Sauvegarde</Button>
             </Form>
         </>
     );
