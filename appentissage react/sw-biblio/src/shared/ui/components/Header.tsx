@@ -24,6 +24,8 @@ export const Header = () => {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/people">Les personnages</Nav.Link>
               <Nav.Link as={Link} to="/films">Mes films</Nav.Link>
+              <Nav.Link as={Link} to="/films/new">Nouveau film</Nav.Link>
+
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
