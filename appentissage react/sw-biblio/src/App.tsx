@@ -1,9 +1,9 @@
+import { useState } from 'react'
 import { Alert } from 'react-bootstrap'
 import './App.css'
-import { ListPeople } from './features/people/components/ListPeople'
-import { Header } from './shared/ui/components/Header'
-import { useState } from 'react'
 import { AddFilm } from './features/films/components/AddFilm'
+import { Header } from './shared/ui/components/Header'
+import { ListPeople } from './features/people/components/ListPeople'
 
 function App() {
   const popin = <Alert key='default' variant='warning'>Youpi</Alert>
@@ -19,8 +19,8 @@ function App() {
       <Header></Header>
       { afficherAlerte && popin }
       <h1>Ma bibliothèque Star wars</h1>
-      {/* <ListPeople displayPopin={displayComponent}></ListPeople> */}
-      <AddFilm></AddFilm>
+      <ListPeople displayPopin={displayComponent}></ListPeople>
+      {/* <AddFilm></AddFilm> */}
     </>
   )
 }

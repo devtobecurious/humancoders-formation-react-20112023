@@ -2,7 +2,8 @@ import { TableUIPeople } from "./TableUIPeople";
 import { getDefaultPeople } from "../../models/people"
 import { Alert, Button } from "react-bootstrap";
 import { DeleteById } from "../../tools/custom-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import business from '../../services/people.application';
 
 export type ListPeopleProps = {
     displayPopin: () => void;
@@ -12,9 +13,20 @@ export type ListPeopleProps = {
  * Head component
  */
 export const ListPeople = (props: ListPeopleProps) => {
+    const [people, setPeople] = useState(getDefaultPeople);
+    const warningPasElements =  <Alert key='warning' variant='warning'>Aucune personne disponible</Alert>
+    
     console.info('ListPeople', this);
     // const peopleDefault: People = [{id: 1, prenom: 'Luke'}];
-    const warningPasElements =  <Alert key='warning' variant='warning'>Aucune personne disponible</Alert>
+
+    const appelApiCallback = () => {
+        business.getAll().then(people => {
+            setPeople(people);
+        });
+    };
+
+    useEffect(appelApiCallback, []) // tableau vide == exécution fonction une seule fois
+    
 
     // const executeClick = () => {
     //     props.displayPopin();
@@ -24,7 +36,6 @@ export const ListPeople = (props: ListPeopleProps) => {
     // const [people, setPeople] = useState(getDefaultPeople()); // Gestionnaire d'état propre à un composant
 
     // Utilisation du fonction qui sera exécutée qu'une seule fois pour initialiser
-    const [people, setPeople] = useState(getDefaultPeople);
     const deleteOnePerson: DeleteById = id => {
         console.info('. deleteOnePerson', people);
 
